@@ -39,7 +39,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ response: chatCompletion.choices[0]?.message?.content || context });
     }
 
-    const normalizedContext = normalizeTranscription(context);
 
     // Build profile context
     let profileContext = '';
