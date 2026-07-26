@@ -13,6 +13,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ response: '' });
     }
 
+    const normalizedContext = normalizeTranscription(context);
+
     if (action === 'correct') {
       const apiKey = process.env.OPENAI_API_KEY;
       if (!apiKey) {
@@ -27,7 +29,7 @@ export async function POST(request: Request) {
           },
           {
             role: "user",
-            content: context
+            content: normalizedContext
           }
         ],
         model: "gpt-4o-mini",
